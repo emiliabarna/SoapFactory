@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SoapFactoryModelStoreContainer" CdmEntityContainer="SoapFactoryEntities">
+    <EntitySetMapping Name="IngredientStockTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.IngredientStockTable">
+        <MappingFragment StoreEntitySet="IngredientStockTable">
+          <ScalarProperty Name="MovementId" ColumnName="MovementId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Producer" ColumnName="Producer" />
+          <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IngredientTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.IngredientTable">
+        <MappingFragment StoreEntitySet="IngredientTable">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateOfBuy" ColumnName="DateOfBuy" />
+          <ScalarProperty Name="DateOfBestOfUse" ColumnName="DateOfBestOfUse" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoapStockTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.SoapStockTable">
+        <MappingFragment StoreEntitySet="SoapStockTable">
+          <ScalarProperty Name="MovementId" ColumnName="MovementId" />
+          <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="SoapId" ColumnName="SoapId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoapTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.SoapTable">
+        <MappingFragment StoreEntitySet="SoapTable">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TimeOfProduction" ColumnName="TimeOfProduction" />
+          <ScalarProperty Name="TimeOfReadyToUse" ColumnName="TimeOfReadyToUse" />
+          <ScalarProperty Name="BestBeforeDate" ColumnName="BestBeforeDate" />
+          <ScalarProperty Name="InStock" ColumnName="InStock" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecipeTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.RecipeTable">
+        <MappingFragment StoreEntitySet="RecipeTable">
+          <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IdSoap" ColumnName="IdSoap" />
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,41 @@
+﻿<Window x:Class="SoapFactory.IngredientStockWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoapFactory"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="IngredientStockWindow" Height="500" Width="800">
+    <DockPanel>
+
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnSave" Grid.Column="2" Grid.Row="1" Click="SaveIngredientButton_Click">Mentés</Button>
+            <Button x:Name="btnModify" Grid.Column="1" Grid.Row="0" Click="ModifyButton_Click">Módosít</Button>
+            <Button x:Name="btnBack" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Click="CloseButton">Vissza</Button>
+            <Button x:Name="btnDelete" Grid.Column="1" Grid.Row="1" Click="btnDelete_Click" Height="19">Törlés</Button>
+            <Button x:Name="btnNew" Grid.Column="2" Grid.Row="0" Click="btnNewIng_Click">Új alapanyag felvétele</Button>
+        </Grid>
+        <DataGrid x:Name="IngStockDataGrid"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="true"  PreviewKeyDown="StopEditingEvent" Background="#FF79D7A6">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Név" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Vásárlás ideje" Binding="{Binding Path=DateOfBuy,Converter={StaticResource ResourceKey=myDateVisualizerConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Lejárat" Binding="{Binding Path=DateOfBestOfUse,Converter={StaticResource ResourceKey=myDateVisualizerConverter}}"></DataGridTextColumn>-->
+                <DataGridTextColumn Header="Készleten" Binding="{Binding Path=Stock}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ár/1000g"   Binding="{Binding Path=Price}" x:Name="IngredientPriceColumn"></DataGridTextColumn>
+                <DataGridTextColumn Header="Megjegyzés" Width="100" Binding="{Binding Path=Others}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

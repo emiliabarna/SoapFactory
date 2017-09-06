@@ -1,0 +1,10 @@
+﻿<Application x:Class="SoapFactory.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SoapFactory"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <local:DateVisualizerConverter x:Key="myDateVisualizerConverter"></local:DateVisualizerConverter>
+    </Application.Resources>
+</Application>

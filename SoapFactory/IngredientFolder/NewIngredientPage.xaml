@@ -1,0 +1,34 @@
+﻿<Window x:Class="SoapFactory.NewIngredientPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoapFactory"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="NewIngredientPage" Height="300" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <UniformGrid x:Name="NewIngredientGrid" Columns="2" Grid.ColumnSpan="2">
+            <Label Content="Új alapanyag neve" Margin="0,0,0.2,64.4"/>
+            <Label Content="" />
+            <Label  Content="Név"  Height="40" VerticalAlignment="Top"/>
+            <TextBox x:Name="NewIngName" Text="{Binding Path=Name}" Margin="-0.2,-0.4,0.4,50.8"></TextBox>
+            <!--<Label>Vásárlás dátuma</Label>
+            <DatePicker SelectedDate="{Binding Path=DateOfBuy}"></DatePicker>
+            <Label>Lejárat dátuma</Label>
+            <DatePicker SelectedDate="{Binding Path=DateOfBestOfUse}"></DatePicker>
+            <Label>Készleten lévő mennyiség(g)</Label>
+            <TextBox Text="{Binding Path=Stock}"></TextBox>
+            <Label>Átlag ár/1000g</Label>
+            <TextBox Text="{Binding Path=Price}"></TextBox>
+            <Label>Megjegyzés</Label>
+            <TextBox Text="{Binding Path=Others}"></TextBox>-->
+            <Button x:Name="btnBack" Click="btnBack_Click" VerticalAlignment="Bottom" Height="38" Margin="0,0,0.2,0.4" Content="Vissza"/>
+            <Button x:Name="btnSaveChanges" Click="btnSaveChanges_Click" Height="38" VerticalAlignment="Bottom" Content="Mentés"/>
+        </UniformGrid>
+    </Grid>
+</Window>

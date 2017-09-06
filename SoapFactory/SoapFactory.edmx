@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SoapFactoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SoapFactory.dbo.FinancialTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FinancialTable">
+          <Key>
+            <PropertyRef Name="IdMovement" />
+            <PropertyRef Name="IsSelling" />
+            <PropertyRef Name="Amount" />
+          </Key>
+          <Property Name="IdMovement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsSelling" Type="bit" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="FinancialPosition" Type="float" />
+        </EntityType>
+        <EntityType Name="IngredientStockTable">
+          <Key>
+            <PropertyRef Name="TransactionNumber" />
+          </Key>
+          <Property Name="TransactionNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdIngredient" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="DateOfBestUse" Type="date" Nullable="false" />
+          <Property Name="Producer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Others" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IngredientTable">
+          <Key>
+            <PropertyRef Name="IdIngredient" />
+          </Key>
+          <Property Name="IdIngredient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Stock" Type="float" />
+        </EntityType>
+        <EntityType Name="RecipeTable">
+          <Key>
+            <PropertyRef Name="IdRecipe" />
+          </Key>
+          <Property Name="IdRecipe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="IdIngredient" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="Others" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SoapStockTable">
+          <Key>
+            <PropertyRef Name="TransactionNumber" />
+          </Key>
+          <Property Name="TransactionNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="IdSoap" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="SellingPrice" Type="float" />
+        </EntityType>
+        <EntityType Name="SoapTable">
+          <Key>
+            <PropertyRef Name="IdSoap" />
+          </Key>
+          <Property Name="IdSoap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdRecipe" Type="int" Nullable="false" />
+          <Property Name="TimeOfProduction" Type="date" Nullable="false" />
+          <Property Name="TimeOfReadyToUse" Type="date" Nullable="false" />
+          <Property Name="BestBeforeDate" Type="date" Nullable="false" />
+          <Property Name="InStock" Type="int" Nullable="false" />
+          <Property Name="Others" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_IngredientStockTable_IngredientTable1">
+          <End Role="IngredientTable" Type="Self.IngredientTable" Multiplicity="1" />
+          <End Role="IngredientStockTable" Type="Self.IngredientStockTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientTable">
+              <PropertyRef Name="IdIngredient" />
+            </Principal>
+            <Dependent Role="IngredientStockTable">
+              <PropertyRef Name="IdIngredient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeTable_IngredientTable">
+          <End Role="IngredientTable" Type="Self.IngredientTable" Multiplicity="1" />
+          <End Role="RecipeTable" Type="Self.RecipeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientTable">
+              <PropertyRef Name="IdIngredient" />
+            </Principal>
+            <Dependent Role="RecipeTable">
+              <PropertyRef Name="IdIngredient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SoapStockTable_SoapTable">
+          <End Role="SoapTable" Type="Self.SoapTable" Multiplicity="1" />
+          <End Role="SoapStockTable" Type="Self.SoapStockTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoapTable">
+              <PropertyRef Name="IdSoap" />
+            </Principal>
+            <Dependent Role="SoapStockTable">
+              <PropertyRef Name="IdSoap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SoapTable_RecipeTable">
+          <End Role="RecipeTable" Type="Self.RecipeTable" Multiplicity="1" />
+          <End Role="SoapTable" Type="Self.SoapTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecipeTable">
+              <PropertyRef Name="IdRecipe" />
+            </Principal>
+            <Dependent Role="SoapTable">
+              <PropertyRef Name="IdRecipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SoapFactoryModelStoreContainer">
+          <EntitySet Name="IngredientStockTable" EntityType="Self.IngredientStockTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IngredientTable" EntityType="Self.IngredientTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecipeTable" EntityType="Self.RecipeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SoapStockTable" EntityType="Self.SoapStockTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SoapTable" EntityType="Self.SoapTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinancialTable" EntityType="Self.FinancialTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FinancialTable].[IdMovement] AS [IdMovement], 
+    [FinancialTable].[IsSelling] AS [IsSelling], 
+    [FinancialTable].[Amount] AS [Amount], 
+    [FinancialTable].[FinancialPosition] AS [FinancialPosition]
+    FROM [dbo].[FinancialTable] AS [FinancialTable]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_IngredientStockTable_IngredientTable1" Association="Self.FK_IngredientStockTable_IngredientTable1">
+            <End Role="IngredientTable" EntitySet="IngredientTable" />
+            <End Role="IngredientStockTable" EntitySet="IngredientStockTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeTable_IngredientTable" Association="Self.FK_RecipeTable_IngredientTable">
+            <End Role="IngredientTable" EntitySet="IngredientTable" />
+            <End Role="RecipeTable" EntitySet="RecipeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SoapStockTable_SoapTable" Association="Self.FK_SoapStockTable_SoapTable">
+            <End Role="SoapTable" EntitySet="SoapTable" />
+            <End Role="SoapStockTable" EntitySet="SoapStockTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SoapTable_RecipeTable" Association="Self.FK_SoapTable_RecipeTable">
+            <End Role="RecipeTable" EntitySet="RecipeTable" />
+            <End Role="SoapTable" EntitySet="SoapTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SoapFactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="IngredientStockTable">
+          <Key>
+            <PropertyRef Name="TransactionNumber" />
+          </Key>
+          <Property Name="TransactionNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdIngredient" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfBestUse" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Producer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Others" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IngredientTable" Relationship="Self.FK_IngredientStockTable_IngredientTable1" FromRole="IngredientStockTable" ToRole="IngredientTable" />
+        </EntityType>
+        <EntityType Name="IngredientTable">
+          <Key>
+            <PropertyRef Name="IdIngredient" />
+          </Key>
+          <Property Name="IdIngredient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stock" Type="Double" />
+          <NavigationProperty Name="IngredientStockTable" Relationship="Self.FK_IngredientStockTable_IngredientTable1" FromRole="IngredientTable" ToRole="IngredientStockTable" />
+          <NavigationProperty Name="RecipeTable" Relationship="Self.FK_RecipeTable_IngredientTable" FromRole="IngredientTable" ToRole="RecipeTable" />
+        </EntityType>
+        <EntityType Name="RecipeTable">
+          <Key>
+            <PropertyRef Name="IdRecipe" />
+          </Key>
+          <Property Name="IdRecipe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdIngredient" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="Others" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IngredientTable" Relationship="Self.FK_RecipeTable_IngredientTable" FromRole="RecipeTable" ToRole="IngredientTable" />
+          <NavigationProperty Name="SoapTable" Relationship="Self.FK_SoapTable_RecipeTable" FromRole="RecipeTable" ToRole="SoapTable" />
+        </EntityType>
+        <EntityType Name="SoapStockTable">
+          <Key>
+            <PropertyRef Name="TransactionNumber" />
+          </Key>
+          <Property Name="TransactionNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdSoap" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="SellingPrice" Type="Double" />
+          <NavigationProperty Name="SoapTable" Relationship="Self.FK_SoapStockTable_SoapTable" FromRole="SoapStockTable" ToRole="SoapTable" />
+        </EntityType>
+        <EntityType Name="SoapTable">
+          <Key>
+            <PropertyRef Name="IdSoap" />
+          </Key>
+          <Property Name="IdSoap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRecipe" Type="Int32" Nullable="false" />
+          <Property Name="TimeOfProduction" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeOfReadyToUse" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BestBeforeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InStock" Type="Int32" Nullable="false" />
+          <Property Name="Others" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RecipeTable" Relationship="Self.FK_SoapTable_RecipeTable" FromRole="SoapTable" ToRole="RecipeTable" />
+          <NavigationProperty Name="SoapStockTable" Relationship="Self.FK_SoapStockTable_SoapTable" FromRole="SoapTable" ToRole="SoapStockTable" />
+        </EntityType>
+        <EntityType Name="FinancialTable">
+          <Key>
+            <PropertyRef Name="IdMovement" />
+            <PropertyRef Name="IsSelling" />
+            <PropertyRef Name="Amount" />
+          </Key>
+          <Property Name="IdMovement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelling" Type="Boolean" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="FinancialPosition" Type="Double" />
+        </EntityType>
+        <Association Name="FK_IngredientStockTable_IngredientTable1">
+          <End Role="IngredientTable" Type="Self.IngredientTable" Multiplicity="1" />
+          <End Role="IngredientStockTable" Type="Self.IngredientStockTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientTable">
+              <PropertyRef Name="IdIngredient" />
+            </Principal>
+            <Dependent Role="IngredientStockTable">
+              <PropertyRef Name="IdIngredient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeTable_IngredientTable">
+          <End Role="IngredientTable" Type="Self.IngredientTable" Multiplicity="1" />
+          <End Role="RecipeTable" Type="Self.RecipeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngredientTable">
+              <PropertyRef Name="IdIngredient" />
+            </Principal>
+            <Dependent Role="RecipeTable">
+              <PropertyRef Name="IdIngredient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SoapTable_RecipeTable">
+          <End Role="RecipeTable" Type="Self.RecipeTable" Multiplicity="1" />
+          <End Role="SoapTable" Type="Self.SoapTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecipeTable">
+              <PropertyRef Name="IdRecipe" />
+            </Principal>
+            <Dependent Role="SoapTable">
+              <PropertyRef Name="IdRecipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SoapStockTable_SoapTable">
+          <End Role="SoapTable" Type="Self.SoapTable" Multiplicity="1" />
+          <End Role="SoapStockTable" Type="Self.SoapStockTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoapTable">
+              <PropertyRef Name="IdSoap" />
+            </Principal>
+            <Dependent Role="SoapStockTable">
+              <PropertyRef Name="IdSoap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SoapFactoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="IngredientStockTable" EntityType="Self.IngredientStockTable" />
+          <EntitySet Name="IngredientTable" EntityType="Self.IngredientTable" />
+          <EntitySet Name="RecipeTable" EntityType="Self.RecipeTable" />
+          <EntitySet Name="SoapStockTable" EntityType="Self.SoapStockTable" />
+          <EntitySet Name="SoapTable" EntityType="Self.SoapTable" />
+          <EntitySet Name="FinancialTable" EntityType="Self.FinancialTable" />
+          <AssociationSet Name="FK_IngredientStockTable_IngredientTable1" Association="Self.FK_IngredientStockTable_IngredientTable1">
+            <End Role="IngredientTable" EntitySet="IngredientTable" />
+            <End Role="IngredientStockTable" EntitySet="IngredientStockTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeTable_IngredientTable" Association="Self.FK_RecipeTable_IngredientTable">
+            <End Role="IngredientTable" EntitySet="IngredientTable" />
+            <End Role="RecipeTable" EntitySet="RecipeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SoapTable_RecipeTable" Association="Self.FK_SoapTable_RecipeTable">
+            <End Role="RecipeTable" EntitySet="RecipeTable" />
+            <End Role="SoapTable" EntitySet="SoapTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SoapStockTable_SoapTable" Association="Self.FK_SoapStockTable_SoapTable">
+            <End Role="SoapTable" EntitySet="SoapTable" />
+            <End Role="SoapStockTable" EntitySet="SoapStockTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SoapFactoryModelStoreContainer" CdmEntityContainer="SoapFactoryEntities">
+          <EntitySetMapping Name="IngredientStockTable">
+            <EntityTypeMapping TypeName="SoapFactoryModel.IngredientStockTable">
+              <MappingFragment StoreEntitySet="IngredientStockTable">
+                <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
+                <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DateOfBestUse" ColumnName="DateOfBestUse" />
+                <ScalarProperty Name="Producer" ColumnName="Producer" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Others" ColumnName="Others" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientTable">
+            <EntityTypeMapping TypeName="SoapFactoryModel.IngredientTable">
+              <MappingFragment StoreEntitySet="IngredientTable">
+                <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecipeTable">
+            <EntityTypeMapping TypeName="SoapFactoryModel.RecipeTable">
+              <MappingFragment StoreEntitySet="RecipeTable">
+                <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Others" ColumnName="Others" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoapStockTable">
+            <EntityTypeMapping TypeName="SoapFactoryModel.SoapStockTable">
+              <MappingFragment StoreEntitySet="SoapStockTable">
+                <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdSoap" ColumnName="IdSoap" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoapTable">
+            <EntityTypeMapping TypeName="SoapFactoryModel.SoapTable">
+              <MappingFragment StoreEntitySet="SoapTable">
+                <ScalarProperty Name="IdSoap" ColumnName="IdSoap" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+                <ScalarProperty Name="TimeOfProduction" ColumnName="TimeOfProduction" />
+                <ScalarProperty Name="TimeOfReadyToUse" ColumnName="TimeOfReadyToUse" />
+                <ScalarProperty Name="BestBeforeDate" ColumnName="BestBeforeDate" />
+                <ScalarProperty Name="InStock" ColumnName="InStock" />
+                <ScalarProperty Name="Others" ColumnName="Others" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinancialTable">
+            <EntityTypeMapping TypeName="SoapFactoryModel.FinancialTable">
+              <MappingFragment StoreEntitySet="FinancialTable">
+                <ScalarProperty Name="IdMovement" ColumnName="IdMovement" />
+                <ScalarProperty Name="IsSelling" ColumnName="IsSelling" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FinancialPosition" ColumnName="FinancialPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

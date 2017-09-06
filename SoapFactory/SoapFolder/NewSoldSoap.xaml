@@ -1,0 +1,30 @@
+﻿<Window x:Class="SoapFactory.NewSoldSoap"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoapFactory"
+        mc:Ignorable="d"
+        Title="NewSoldSoap" Height="300" Width="300" Loaded="WindowLoadedEvent">
+    <DockPanel>
+        <UniformGrid Columns="2" DockPanel.Dock="Bottom">
+            <Button x:Name="btnCancel" Click="btnCancel_Click">Vissza</Button>
+            <Button x:Name="btnSaveChanges" Click="btnSaveChanges_Click" HorizontalAlignment="Left" Margin="-0.2,0,0,0" Width="147">Mentés</Button>
+        </UniformGrid>
+        <UniformGrid x:Name="SoapContainer" Columns="2" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4">
+            <Label></Label>
+            <Label></Label>
+            <Label Content="Eladott szappan neve" Margin="0,0,0,0.2"/>
+            <ComboBox x:Name="cmbNames"
+                  SelectedValue="{Binding Path=IdSoap}"
+                  SelectedValuePath="IdSoap"
+                  DisplayMemberPath="Name"></ComboBox>
+            <Label Content="Eladás dátuma"/>
+            <DatePicker SelectedDate="{Binding Path=Date}"></DatePicker>
+            <Label Content="Darabszám"/>
+            <TextBox Text="{Binding Path=Quantity}"></TextBox>
+            <Label>Eladási ár/db</Label>
+            <TextBox Text="{Binding Path=SellingPrice}"></TextBox>
+        </UniformGrid>
+    </DockPanel>
+</Window>

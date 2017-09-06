@@ -1,0 +1,36 @@
+﻿<Window x:Class="SoapFactory.RecipeDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoapFactory"
+        mc:Ignorable="d"
+        Title="RecipeDetails" Height="300" Width="800" Loaded="RecipeDetailTable_Loaded">
+    <DockPanel>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnDelete"  Grid.Row="0" Grid.Column="1" Click="btnDelete_Click">Törlés</Button>
+            <Button x:Name="btnCancel" Grid.Row="0" Grid.Column="0" Click="btnCancel_Click">Vissza</Button>
+            <Button x:Name="btnSave"  Grid.Row="1" Grid.Column ="1" Click="SaveButton_Click">Mentés</Button>
+            <Button x:Name="btnModify"  Grid.Row="1" Grid.Column ="0" Click="Modify_Click">Módosít</Button>
+        </Grid>
+        <DataGrid x:Name="RecipeDetailsDataGrid"
+                  AutoGenerateColumns="False"
+                  SelectionChanged="RecipeDetailsDataGrid_SelectionChanged"
+                  IsReadOnly="True"
+                  CanUserAddRows="false">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Alapanyag" Width="300" Binding="{Binding Path=IngredientTable.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Mennyiség/g" Width="100" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

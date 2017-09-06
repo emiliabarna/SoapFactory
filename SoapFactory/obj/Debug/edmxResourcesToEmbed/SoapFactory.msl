@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SoapFactoryModelStoreContainer" CdmEntityContainer="SoapFactoryEntities">
+    <EntitySetMapping Name="IngredientStockTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.IngredientStockTable">
+        <MappingFragment StoreEntitySet="IngredientStockTable">
+          <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="DateOfBestUse" ColumnName="DateOfBestUse" />
+          <ScalarProperty Name="Producer" ColumnName="Producer" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IngredientTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.IngredientTable">
+        <MappingFragment StoreEntitySet="IngredientTable">
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecipeTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.RecipeTable">
+        <MappingFragment StoreEntitySet="RecipeTable">
+          <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoapStockTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.SoapStockTable">
+        <MappingFragment StoreEntitySet="SoapStockTable">
+          <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IdSoap" ColumnName="IdSoap" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoapTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.SoapTable">
+        <MappingFragment StoreEntitySet="SoapTable">
+          <ScalarProperty Name="IdSoap" ColumnName="IdSoap" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+          <ScalarProperty Name="TimeOfProduction" ColumnName="TimeOfProduction" />
+          <ScalarProperty Name="TimeOfReadyToUse" ColumnName="TimeOfReadyToUse" />
+          <ScalarProperty Name="BestBeforeDate" ColumnName="BestBeforeDate" />
+          <ScalarProperty Name="InStock" ColumnName="InStock" />
+          <ScalarProperty Name="Others" ColumnName="Others" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinancialTable">
+      <EntityTypeMapping TypeName="SoapFactoryModel.FinancialTable">
+        <MappingFragment StoreEntitySet="FinancialTable">
+          <ScalarProperty Name="IdMovement" ColumnName="IdMovement" />
+          <ScalarProperty Name="IsSelling" ColumnName="IsSelling" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="FinancialPosition" ColumnName="FinancialPosition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

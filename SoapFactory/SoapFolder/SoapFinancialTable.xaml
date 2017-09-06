@@ -1,0 +1,38 @@
+﻿<Window x:Class="SoapFactory.SoapFinancialTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoapFactory"
+        mc:Ignorable="d"
+        Title="SoapFinancialTable" Height="300" Width="400" Loaded="WindowLoaded">
+    <DockPanel>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnBack" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Click="btnBack_Click">Vissza</Button>
+            <Button x:Name="btnNew" Grid.Column="1" Grid.Row="0" Click="btnNew_Click" Height="19" Margin="0.4,0,0,0" VerticalAlignment="Top">Új szappan eladása</Button>
+            <Button x:Name="btnSave" Grid.Column="2"  Click="SaveSoapButton_Click" Margin="0,0,-0.4,0.2">Mentés</Button>
+        </Grid>
+        <DataGrid x:Name="SoapFinDataGrid"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionUnit="FullRow"
+                  IsReadOnly="true" Background="#FF79D7A6">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sorszám" Binding="{Binding Path=TransactionNumber}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Eladás ideje" Binding="{Binding Path=Date, Converter={StaticResource ResourceKey=myDateVisualizerConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Szappan neve" Binding="{Binding Path=SoapTable.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Darabszám" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Eladási ár" Binding="{Binding Path=SellingPrice}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nyereség" Binding="{Binding Path=Profit}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

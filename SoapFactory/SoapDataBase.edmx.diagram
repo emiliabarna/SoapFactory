@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="616a1832d85a4ae8bf847faffe0d0526" Name="Diagram1">
+        <EntityTypeShape EntityType="SoapFactoryModel.IngredientStockTable" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoapFactoryModel.IngredientTable" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoapFactoryModel.SoapStockTable" Width="1.5" PointX="4.875" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoapFactoryModel.SoapTable" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoapFactoryModel.RecipeTable" Width="1.5" PointX="5.375" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="SoapFactoryModel.FK_IngredientStockTable_IngredientTable" ManuallyRouted="false" />
+        <AssociationConnector Association="SoapFactoryModel.FK_RecipeTable_IngredientTable" ManuallyRouted="false" />
+        <AssociationConnector Association="SoapFactoryModel.FK_SoapStockTable_SoapTable" ManuallyRouted="false" />
+        <AssociationConnector Association="SoapFactoryModel.FK_RecipeTable_SoapTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

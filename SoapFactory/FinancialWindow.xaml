@@ -1,0 +1,35 @@
+﻿<Window x:Class="SoapFactory.FinancialWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoapFactory"
+        mc:Ignorable="d"
+        Title="FinancialWindow" Height="300" Width="300" Loaded="WindowLoaded" Background="#FF79D7A6">
+    <DockPanel>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnBack" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Click="btnBack_Click">Vissza</Button>
+   
+        </Grid>
+        <DataGrid x:Name="FinancialDataGrid"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionUnit="FullRow"
+                  IsReadOnly="true" Background="#FF79D7A6">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sorszám" Binding="{Binding Path=IdMovement}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Eladás-e" Binding="{Binding Path=IsSelling}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Összeg(Ft)" Binding="{Binding Path=Amount}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Pénzügyi állás" Binding="{Binding Path=FinancialPosition}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

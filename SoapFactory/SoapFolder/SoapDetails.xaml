@@ -1,0 +1,35 @@
+﻿<Window x:Class="SoapFactory.SoapDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoapFactory"
+        mc:Ignorable="d"
+        Title="SoapDetails" Height="300" Width="300" Loaded="Window_Loaded">
+    <DockPanel>
+        <UniformGrid Columns="2" DockPanel.Dock="Bottom">
+            <Button x:Name="btnCancel" Click="btnCancel_Click">Vissza</Button>
+            <Button x:Name="btnSaveChanges" Click="btnSaveChanges_Click">Mentés</Button>
+        </UniformGrid>
+        <UniformGrid x:Name="SoapContainer" Columns="2" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4">
+            <Label>Név</Label>
+            <TextBox x:Name="NameBox" Text="{Binding Path=Name}"></TextBox>
+            <Label>Recept</Label>
+            <ComboBox x:Name="cmbRecipesAvailable"
+                      SelectedValue="{Binding Path=IdRecipe}"
+                  SelectedValuePath="IdRecipe"
+                  DisplayMemberPath="Name"
+                     ></ComboBox>
+            <Label>Gyártás dátuma</Label>
+            <DatePicker x:Name="DateOfProduce" SelectedDate="{Binding Path=TimeOfProduction}"></DatePicker>
+            <Label>Felhasználható</Label>
+            <DatePicker x:Name="DateOfReady" SelectedDate="{Binding Path=TimeOfReadyToUse}"></DatePicker>
+            <Label>Lejárat dátuma</Label>
+            <DatePicker x:Name="DateOfBestBefore" SelectedDate="{Binding Path=BestBeforeDate}"></DatePicker>
+            <Label>Raktáron</Label>
+            <TextBox Text="{Binding Path=InStock}"></TextBox>
+            <Label>Megjegyzés*</Label>
+            <TextBox Text="{Binding Path=Others}"></TextBox>
+        </UniformGrid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,36 @@
+﻿<Window x:Class="SoapFactory.NewBoughtIngredientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoapFactory"
+        mc:Ignorable="d"
+        Title="NewBoughtIngredientWindow" Height="300" Width="300" Loaded="WindowLoadedEvent">
+    <DockPanel>
+        <UniformGrid Columns="2" DockPanel.Dock="Bottom">
+            <Button x:Name="btnCancel" Click="btnCancel_Click">Vissza</Button>
+            <Button x:Name="btnSaveChanges" Click="btnSaveChanges_Click" HorizontalAlignment="Left" Margin="-0.2,0,0,0" Width="147">Mentés</Button>
+        </UniformGrid>
+        <UniformGrid x:Name="NewIngredientContainer" Columns="2" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4">
+            <Label></Label>
+            <Label></Label>
+            <Label Content="Vásárolt alapanyag neve" Margin="0,0,0,0.2"/>
+            <ComboBox x:Name="cmbIngredient"
+                  SelectedValue="{Binding Path=IdIngredient}"
+                  SelectedValuePath="IdIngredient"
+                  DisplayMemberPath="Name"></ComboBox>
+            <Label Content="Vásárlás dátuma"/>
+            <DatePicker SelectedDate="{Binding Path=Date}"></DatePicker>
+            <Label Content="Felhasználható"/>
+            <DatePicker SelectedDate="{Binding Path=DateOfBestUse}"></DatePicker>
+            <Label Content="Gyártó"/>
+            <TextBox Text="{Binding Path=Producer}"></TextBox>
+            <Label Content="Mennyiség"/>
+            <TextBox Text="{Binding Path=Quantity}"></TextBox>
+            <Label>Vételár</Label>
+            <TextBox Text="{Binding Path=Price}"></TextBox>
+            <Label>Megjegyzés</Label>
+            <TextBox Text="{Binding Path=Others}"></TextBox>
+        </UniformGrid>
+    </DockPanel>
+</Window>
