@@ -18,7 +18,7 @@ namespace SoapFactory
     /// <summary>
     /// Interaction logic for SoapStock.xaml
     /// </summary>
-    public partial class SoapStock : Window
+    public partial class SoapStock : Window, IDisposable
     {
         private SoapFactoryEntities se = new SoapFactoryEntities();
         public SoapStock()
@@ -38,10 +38,10 @@ namespace SoapFactory
             SoapDetails frm = new SoapDetails(new SoapTable());
             Nullable<bool> wantToSave = frm.ShowDialog();
             if (wantToSave.HasValue && wantToSave.Value == true)
-                {
+            {
                 SoapTable newSoap = frm.DataContext as SoapTable;
                 se.SoapTable.Add(newSoap);
-            } 
+            }
         }
         //Add the new soap item to database
         public void AddToSoapTable(SoapTable st)
@@ -118,8 +118,18 @@ namespace SoapFactory
             //get name of recipe
             int recipeId = recipeSearched.IdRecipe;
             string recipeName = se.RecipeTable.Where(x => x.IdRecipe == recipeId).Select(x => x.Name).First();
+
+            //fill DataGrid with the details of searched recipe
             recipeDetailsTable.RecipeDetailsDataGrid.ItemsSource = se.RecipeTable.Local.Where(x => x.Name == recipeName).Select(x => x);
             recipeDetailsTable.ShowDialog();
+        }
+
+        public void Dispose()
+        {
+            if (se != null)
+            {
+                se.Dispose();
+            }
         }
     }
 }

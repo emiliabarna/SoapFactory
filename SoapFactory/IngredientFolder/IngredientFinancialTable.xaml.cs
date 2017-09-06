@@ -18,7 +18,7 @@ namespace SoapFactory
     /// <summary>
     /// Interaction logic for IngredientFinancialTable.xaml
     /// </summary>
-    public partial class IngredientFinancialTable : Window
+    public partial class IngredientFinancialTable : Window, IDisposable
     {
         SoapFactoryEntities se = new SoapFactoryEntities();
 
@@ -72,6 +72,14 @@ namespace SoapFactory
         {
             se.SaveChanges();
             MessageBox.Show("Változtatások mentve");
+        }
+
+        public void Dispose()
+        {
+            if (se != null)
+            {
+                se.Dispose();
+            }
         }
     }
 }

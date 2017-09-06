@@ -18,7 +18,7 @@ namespace SoapFactory
     /// <summary>
     /// Interaction logic for IngredientStockWindow.xaml
     /// </summary>
-    public partial class IngredientStockWindow : Window
+    public partial class IngredientStockWindow : Window, IDisposable
     {
         private SoapFactoryEntities se = new SoapFactoryEntities();
         public delegate void IsEnterPressedEvent(object sender, KeyEventArgs e);
@@ -89,6 +89,14 @@ namespace SoapFactory
                 IngStockDataGrid.IsReadOnly = true;
             }
 
+        }
+
+        public void Dispose()
+        {
+            if (se != null)
+            {
+                se.Dispose();
+            }
         }
     }
 }

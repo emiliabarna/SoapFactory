@@ -18,7 +18,7 @@ namespace SoapFactory
     /// <summary>
     /// Interaction logic for SoapDetails.xaml
     /// </summary>
-    public partial class SoapDetails : Window
+    public partial class SoapDetails : Window, IDisposable
     {
         private SoapFactoryEntities se = new SoapFactoryEntities();
         private SoapTable st = new SoapTable();
@@ -45,12 +45,12 @@ namespace SoapFactory
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
             // Check if every field is filled out
-           SoapTable dateOfProduce = this.DateOfProduce.DataContext as SoapTable;
-           SoapTable dateOfReady =this.DateOfReady.DataContext as SoapTable;
-            SoapTable dateOfBestBefore =this.DateOfBestBefore.DataContext as SoapTable;
+            SoapTable dateOfProduce = this.DateOfProduce.DataContext as SoapTable;
+            SoapTable dateOfReady = this.DateOfReady.DataContext as SoapTable;
+            SoapTable dateOfBestBefore = this.DateOfBestBefore.DataContext as SoapTable;
             SoapTable name = this.NameBox.DataContext as SoapTable;
             SoapTable recipe = this.cmbRecipesAvailable.DataContext as SoapTable;
-   
+
             // Validation - Check if every field is filled out
             if (
                        name.Name == null
@@ -70,9 +70,17 @@ namespace SoapFactory
         }
         //Cancel button
         private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
+        }
+
+        public void Dispose()
+        {
+            if (se != null)
             {
-                this.DialogResult = false;
-                this.Close();
+                se.Dispose();
             }
         }
     }
+}

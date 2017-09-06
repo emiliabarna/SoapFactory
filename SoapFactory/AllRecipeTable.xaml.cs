@@ -18,7 +18,7 @@ namespace SoapFactory
     /// <summary>
     /// Interaction logic for AllRecipeTable.xaml
     /// </summary>
-    public partial class AllRecipeTable : Window
+    public partial class AllRecipeTable : Window, IDisposable
     {
         SoapFactoryEntities se = new SoapFactoryEntities();
 
@@ -129,6 +129,14 @@ namespace SoapFactory
                         MessageBox.Show("A recept nem törölhető, mivel tartozik hozzá készleten lévő termék.");
                     }
                 }
+            }
+        }
+
+        public void Dispose()
+        {
+            if (se != null)
+            {
+                se.Dispose();
             }
         }
     }

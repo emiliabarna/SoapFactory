@@ -18,7 +18,7 @@ namespace SoapFactory
     /// <summary>
     /// Interaction logic for NewBoughtIngredientWindow.xaml
     /// </summary>
-    public partial class NewBoughtIngredientWindow : Window,IDisposable
+    public partial class NewBoughtIngredientWindow : Window, IDisposable
     {
         private SoapFactoryEntities se = new SoapFactoryEntities();
         private IngredientStockTable ist = new IngredientStockTable();
@@ -30,7 +30,7 @@ namespace SoapFactory
             this.NewIngredientContainer.DataContext = constructorTable;
             this.ist.Date = DateTime.Now;
             this.ist.DateOfBestUse = DateTime.Now;
-           
+
         }
         //Load window
         private void WindowLoadedEvent(object sender, RoutedEventArgs e)
@@ -43,7 +43,7 @@ namespace SoapFactory
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
-            this.Close(); 
+            this.Close();
         }
 
         //Save changes into database

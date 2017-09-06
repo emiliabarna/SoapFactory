@@ -18,7 +18,7 @@ namespace SoapFactory
     /// <summary>
     /// Interaction logic for FinancialWindow.xaml
     /// </summary>
-    public partial class FinancialWindow : Window
+    public partial class FinancialWindow : Window, IDisposable
     {
         SoapFactoryEntities se = new SoapFactoryEntities();
 
@@ -37,6 +37,14 @@ namespace SoapFactory
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void Dispose()
+        {
+            if (se != null)
+            {
+                se.Dispose();
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SoapFactory
     /// <summary>
     /// Interaction logic for NewSoldSoap.xaml
     /// </summary>
-    public partial class NewSoldSoap : Window
+    public partial class NewSoldSoap : Window,IDisposable
     {
         SoapFactoryEntities se = new SoapFactoryEntities();
         SoapStockTable st = new SoapStockTable();
@@ -50,6 +50,14 @@ namespace SoapFactory
         {
             this.DialogResult = true;
             this.Close();
-        }  
+        }
+
+        public void Dispose()
+        {
+            if (se != null)
+            {
+                se.Dispose();
+            }
+        }
     } 
 }
